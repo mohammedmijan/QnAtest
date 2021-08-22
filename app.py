@@ -5,6 +5,7 @@ def main():
     dict1 = { "message" : "Welcome to QnA of Acrylic"}
     return jsoni_cookie(dict1)
 
+@cross_origin
 @app.route("/submit_question", methods=["POST"])
 def submit_question():
     question_encoded = request.get_json(force=True)
@@ -17,6 +18,7 @@ def submit_question():
         response = jsoni_cookie(HACKER)
     return response
 
+@cross_origin
 @app.route("/get_question", methods=["GET"])
 def get_question():
     #_encoded = dict(request.cookies)
