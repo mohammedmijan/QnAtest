@@ -2,7 +2,8 @@ from modules import *
 
 @app.route("/")
 def main(): 
-    return "Welcome to QnA of Acrylic"
+    dict1 = { "message":"Welcome to QnA of Acrylic"}
+    return jsoni_cookie(dict1)
 
 @app.route("/submit_question", methods=["POST"])
 def submit_question():
@@ -18,7 +19,7 @@ def submit_question():
 
 @app.route("/get_question", methods=["GET"])
 def get_question():
-    _encoded = request.get_json(force=True)
+    _encoded = request.cookies
     try:
         decode(_encoded, SECRET, algorithms=["HS256"])
         questions = question_server(user="Null")
@@ -30,4 +31,4 @@ def get_question():
 
     
 if __name__ =="__main__":
-    app.run(host="0.0.0.0", port=4699, debug=False)
+    app.run(host="0.0.0.0", port=4699, debug=True)
