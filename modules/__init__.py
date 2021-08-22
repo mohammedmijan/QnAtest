@@ -2,6 +2,7 @@ from modules.machine import *
 from modules.security import *
 from modules.constant import *
 from modules.database import *
+from modules.machine import *
 
 from jwt import decode
 from flask import Flask, request
