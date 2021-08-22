@@ -5,21 +5,26 @@ def main():
     dict1 = { "message" : "Welcome to QnA of Acrylic"}
     return jsoni_cookie(dict1)
 
-@cross_origin
-@app.route("/submit_question", methods=["POST"])
-def submit_question():
-    question_encoded = request.get_json(force=True)
-    token = question_encoded["token"]
-    try:
-        decode(token, SECRET, algorithms=["HS256"])
-        q_to_database = question_server(user="Null",question=token)
-        response = jsoni_cookie(q_to_database)
-    except:
-        response = jsoni_cookie(HACKER)
-    return response
 
-@cross_origin
+@app.route("/submit_question", methods=["GET","POST"])
+@cross_origin()
+def submit_question():
+    if request.method == "POST":
+        question_encoded = request.get_json(force=True)
+        token = question_encoded["token"]
+        try:
+            decode(token, SECRET, algorithms=["HS256"])
+            q_to_database = question_server(user="Null",question=token)
+            response = jsoni_cookie(q_to_database)
+        except:
+            response = jsoni_cookie(HACKER)
+        return response
+
+    dict1 = { "message" : "Please Submit question."}
+    return jsoni_cookie(dict1)
+
 @app.route("/get_question", methods=["GET"])
+@cross_origin()
 def get_question():
     #_encoded = dict(request.cookies)
     #token = _encoded['_set']
