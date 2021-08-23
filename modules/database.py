@@ -14,15 +14,19 @@ def question_server(user,question=None):
     if question:
         questions = mongo.db.question.find({"user": user})
         questions = loads(dumps(questions))
-        question = [ ]
-        times = questions[-1]["time"] - questions[-2]["time"]
-        print(times)
-        if times >= 10:
+        if questions != []:
+            times = questions[-1]["time"] - questions[-2]["time"]
+            print(times)
+            if times >= 10:
+                json_question = {"user":user, "question":question, "answer":None, "time":time.time()}
+                mongo.db.question.insert_one(json_question)
+                response =  {"success":True}
+            else:
+                response = HACKER
+        else:
             json_question = {"user":user, "question":question, "answer":None, "time":time.time()}
             mongo.db.question.insert_one(json_question)
             response =  {"success":True}
-        else:
-            response = HACKER
     else:
         questions = mongo.db.question.find({"user": user})
         questions = loads(dumps(questions))
