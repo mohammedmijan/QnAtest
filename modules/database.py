@@ -16,8 +16,8 @@ def question_server(user,question=None):
         questions = loads(dumps(questions))
         question = [ ]
         times = questions[-1]["time"] - questions[-2]["time"]
-        print(times/60)
-        if times/60 >= 3:
+        print(times)
+        if times >= 10:
             json_question = {"user":user, "question":question, "answer":None, "time":time.time()}
             mongo.db.question.insert_one(json_question)
             response =  {"success":True}
