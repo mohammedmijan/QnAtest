@@ -22,10 +22,10 @@ def submit_question():
 @app.route("/get_question", methods=["GET"])
 @cross_origin()
 def get_question():
-    #_encoded = dict(request.cookies)
-    #token = _encoded['_set']
+    _encoded = dict(request.cookies)
+    token = _encoded['_set']
     try:
-        #decode(token, SECRET_KEY)
+        decode(token, SECRET_KEY)
         questions = question_server(user="Null")
         response = jsoni_cookie(questions)
     except:
