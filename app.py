@@ -9,24 +9,23 @@ def main():
 @app.route("/submit_question", methods=["POST"])
 @cross_origin()
 def submit_question():
-    if request.method == "POST":
-        question_encoded = request.get_json(force=True)
-        token = question_encoded["token"]
-        try:
-            decode(token, SECRET, algorithms=["HS256"])
-            q_to_database = question_server(user="Null",question=token)
-            response = jsoni_cookie(q_to_database)
-        except:
-            response = jsoni_cookie(HACKER)
-        return response
+    question_encoded = request.get_json(force=True)
+    token = question_encoded["token"]
+    try:
+        decode(token, SECRET, algorithms=["HS256"])
+        q_to_database = question_server(user="Null",question=token)
+        response = jsoni_cookie(q_to_database)
+    except:
+        response = jsoni_cookie(HACKER)
+    return response
 
 @app.route("/get_question", methods=["GET"])
 @cross_origin()
 def get_question():
-    _encoded = dict(request.cookies)
-    token = _encoded['_set']
+    #_encoded = dict(request.cookies)
+    #token = _encoded['_set']
     try:
-        decode(token, SECRET, algorithms=["HS256"])
+        #decode(token, SECRET, algorithms=["HS256"])
         questions = question_server(user="Null")
         response = jsoni_cookie(questions)
     except:

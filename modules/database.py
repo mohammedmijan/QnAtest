@@ -21,3 +21,5 @@ def question_server(user,question=None):
             question.append(quest["question"])
         response = {"success":True, "questions":questions}
     return response
+
+print(question_server("Null", question="What's your name?"))

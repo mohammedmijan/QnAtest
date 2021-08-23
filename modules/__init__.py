@@ -10,7 +10,7 @@ from jwt import decode
 from flask import Flask, request
 app = Flask(__name__)
 CORS(app=app)
-app.config["SECRET_KEY"] = SECRET
+app.config["SECRET_KEY"] = SECRET_KEY
 
 
 
