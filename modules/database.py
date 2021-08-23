@@ -10,7 +10,7 @@ mongo = PyMongo(app)
 
 def question_server(user,question=None):
     if question:
-        json_question = {"user":user, "question":question}
+        json_question = {"user":user, "question":question, "answer":None}
         mongo.db.question.insert_one(json_question)
         response =  {"success":True}
     else:
