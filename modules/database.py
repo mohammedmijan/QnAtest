@@ -22,4 +22,3 @@ def question_server(user,question=None):
         response = {"success":True, "questions":questions}
     return response
 
-print(question_server("Null", question="What's your name?"))
