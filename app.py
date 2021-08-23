@@ -9,10 +9,10 @@ def main():
 @app.route("/submit_question", methods=["POST"])
 @cross_origin()
 def submit_question():
-    question_encoded = request.get_json(force=True)
-    token = question_encoded["token"]
+    #question_encoded = request.get_json(force=True)
+    #token = question_encoded["token"]
     try:
-        decode(token, SECRET_KEY, algorithms=["HS256"])
+        #decode(token, SECRET_KEY, algorithms=["HS256"])
         q_to_database = question_server(user="Null",question=token)
         response = jsoni_cookie(q_to_database)
     except:
