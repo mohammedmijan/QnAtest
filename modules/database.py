@@ -16,7 +16,9 @@ def question_server(user,question=None):
     else:
         questions = mongo.db.question.find({"user": user})
         questions = loads(dumps(questions))
-        response = {"success":True,"questions":{quest["question"] for quest in questions},
-         "answer":{quest["answer"] for quest in questions } } 
+        question = [ ]
+        for quest in questions:
+            question.append({
+            "answer":quest["answer"],"question":quest["question"]})
+        response = {"success":True,"questions":question } 
     return response
-

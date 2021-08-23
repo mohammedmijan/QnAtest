@@ -30,7 +30,6 @@ def get_question():
         response = jsoni_cookie(questions)
     except:
         response = jsoni_cookie(HACKER)
-
     return response
 
 
