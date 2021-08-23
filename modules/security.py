@@ -1,5 +1,5 @@
 from flask import jsonify, make_response
-from jwt import encode
+from jwt import encode, decode
 from modules.constant import *
 
 
@@ -16,3 +16,6 @@ def authenticate_hacker(mail, password, user):
     elif mail and password or user and password:
         pass
     return True
+
+def decode_encode_test(var_):
+    return decode(var_, SECRET_KEY, algorithms=["HS256"], options={"verify_iat":True, "verify_exp":True})

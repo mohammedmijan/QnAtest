@@ -2,6 +2,7 @@ from flask_pymongo import PyMongo
 from flask import Flask
 from bson.json_util import loads, dumps
 from modules.constant import *
+from modules.security import *
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = f"mongodb+srv://{SERVER['name']}:{SERVER['password']}@cluster0.fo82u.mongodb.net/qNaandFaQs"
@@ -19,6 +20,9 @@ def question_server(user,question=None):
         question = [ ]
         for quest in questions:
             question.append({
-            "answer":quest["answer"],"question":quest["question"]})
+            "answer":quest["answer"],"question":decode_encode_test(quest["question"])["question"]})
         response = {"success":True,"questions":question } 
     return response
+
+
+
