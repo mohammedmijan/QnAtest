@@ -14,7 +14,7 @@ def question_server(user,question=None):
     if question:
         questions = mongo.db.question.find({"user": user})
         questions = loads(dumps(questions))
-        if len(questions) != 2:
+        if len(questions) >= 2:
             times = questions[-1]["time"] - questions[-2]["time"]
             print(times)
             if times >= 10:
