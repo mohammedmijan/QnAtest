@@ -20,7 +20,7 @@ def question_server(user,question=None):
         question = [ ]
         for quest in questions:
             question.append({
-            "answer":quest["answer"],"question":decode_encode_test(quest["question"])["question"]})
+            "answer":"I do not know.","question":decode_encode_test(quest["question"])["question"]})
         response = {"success":True,"questions":question } 
     return response
 
